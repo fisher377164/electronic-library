@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Electronic Library</title>
+    <base href="/"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--semantic-ui-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.js"></script>
+
+    <!--<link rel="stylesheet" href="styles.css">-->
+    <!-- 1. Load libraries -->
+    <!-- Polyfill(s) for older browsers -->
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <!-- 2. Configure SystemJS -->
+    <script src="systemjs.config.js"></script>
+    <script>
+        System.import('app').catch(function (err) {
+            console.error(err);
+        });
+    </script>
+</head>
+
+<body>
+<library-app>
+    <div class="ui middle aligned center aligned grid">
+        <div class="ui active inverted dimmer">
+            <div class="ui text loader">Loading</div>
+        </div>
+    </div>
+</library-app>
+</body>
+</html>

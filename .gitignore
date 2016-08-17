@@ -27,5 +27,5 @@ buildNumber.properties
 src/main/webapp/node_modules/
 src/main/webapp/typings/
 src/main/webapp/npm-debug.log
-src/main/webapp/**/*.js
-src/main/webapp/**/*.js.map
+src/main/webapp/app/**/*.js
+src/main/webapp/app/**/*.js.map

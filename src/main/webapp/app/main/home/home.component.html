@@ -1,0 +1,22 @@
+<h1 class=" ui header center aligned">Best Books</h1>
+<!--<ul>-->
+<!--<li *ngFor="let book of topBooks | async">-->
+<!--<img [attr.src]="'data:image/png;base64,'+book.bookImage">-->
+<!--</li>-->
+<!--</ul>-->
+
+<sm-cards class="centered">
+    <sm-card *ngFor="let book of topBooks | async"
+             class="ui card" [image]="'data:image/png;base64,'+book.bookImage">
+        <card-title>{{book.bookName}} Kristy</card-title>
+        <card-subtitle> {{book.publishingHouse}}</card-subtitle>
+        <card-content>
+            {{book.description}}
+        </card-content>
+        <card-extra>
+            <a>
+                Read
+            </a>
+        </card-extra>
+    </sm-card>
+</sm-cards>
