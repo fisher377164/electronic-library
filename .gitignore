@@ -23,3 +23,9 @@ buildNumber.properties
 ### JetBrains template
 .idea/
 *.iml
+
+src/main/webapp/node_modules/
+src/main/webapp/typings/
+src/main/webapp/npm-debug.log
+src/main/webapp/**/*.js
+src/main/webapp/**/*.js.map

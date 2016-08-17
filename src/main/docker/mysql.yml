@@ -1,5 +1,6 @@
 # To start docker-compose run
 # sudo docker-compose -f mysql.yml up -d
+#
 
 mysql:
   container_name: mysql-library
@@ -11,3 +12,4 @@ mysql:
     MYSQL_DATABASE: library
     MYSQL_USER: user
     MYSQL_PASSWORD: password
+    ssl-mode: DISABLED
