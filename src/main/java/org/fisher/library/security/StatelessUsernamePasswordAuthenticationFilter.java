@@ -57,7 +57,6 @@ public class StatelessUsernamePasswordAuthenticationFilter extends AbstractAuthe
 
         final UserLoginDto user = objectMapper.readValue(request.getInputStream(), UserLoginDto.class);
 
-
         if (user == null || user.getUsername() == null || user.getUsername().isEmpty()
                 || user.getPassword() == null || user.getPassword().isEmpty()) {
             LOGGER.warn("Attempt to authenticate with empty credentials: {}", user);

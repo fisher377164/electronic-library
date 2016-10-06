@@ -29,3 +29,5 @@ src/main/webapp/typings/
 src/main/webapp/npm-debug.log
 src/main/webapp/app/**/*.js
 src/main/webapp/app/**/*.js.map
+
+old-angular

@@ -19,7 +19,6 @@ import java.util.List;
  * @since 8/10/16.
  */
 
-@CrossOrigin
 @RestController
 @RequestMapping("/api/book")
 public class BookRestController {
@@ -51,6 +50,27 @@ public class BookRestController {
         BookDTO bookFromBD = bookService.addBook(bookDTO);
         return new ResponseEntity<>(bookFromBD, HttpStatus.CREATED);
     }
+
+    @RequestMapping(value = "/getAll/{count}/{page}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity getAllBooksPage(@PathVariable("page") Integer page, @PathVariable("count") Integer count) {
+
+        LOGGER.info("getAllBooksPage page: " + page + " count: " +count);
+
+        List<BookInfoDTO> allBooksPage = bookService.getAllBooksPage(page, count);
+        return new ResponseEntity<>(allBooksPage, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/getAllCount", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity getAllBooksCount() {
+
+        LOGGER.info("getAllBooksCount");
+
+        long allBooksCount = bookService.getAllBooksCount();
+
+        return new ResponseEntity<>(allBooksCount, HttpStatus.OK);
+    }
+
+
 
 
 }

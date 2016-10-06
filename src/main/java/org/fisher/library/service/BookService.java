@@ -13,5 +13,9 @@ public interface BookService {
 
     List<BookInfoDTO> getTopBooks(Integer count);
 
+    List<BookInfoDTO> getAllBooksPage(Integer page, Integer count);
+
+    long getAllBooksCount();
+
     BookDTO addBook(BookDTO bookDTO);
 }

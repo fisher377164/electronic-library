@@ -1,5 +1,6 @@
 package org.fisher.library.web.rest;
 
+import org.fisher.library.exeptions.IllegalPageException;
 import org.fisher.library.security.UserAuthentication;
 import org.fisher.library.service.UserService;
 import org.fisher.library.web.dto.UserDto;
@@ -14,13 +15,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * @author fisher
  * @since 8/5/16.
  */
 
-@CrossOrigin
 @RestController
 @RequestMapping("/api/user")
 public class UserRestController {
@@ -66,12 +67,23 @@ public class UserRestController {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity registerUserWithReal(@Valid @RequestBody UserDto user) {
+    public ResponseEntity registerUser(@Valid @RequestBody UserDto user) {
 
         LOGGER.info("registerUser /user/registration");
 
         UserDto registeredUser = userService.register(user);
         return new ResponseEntity<>(registeredUser, HttpStatus.CREATED);
+
+    }
+
+    @RequestMapping(value = "/getAllUsers/{count}/{page}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity getAllUsers(@PathVariable("count") Integer count, @PathVariable("page") Integer page)
+            throws IllegalPageException {
+
+        LOGGER.info("getAllUsers /user/registration");
+
+        List<UserDto> allUsers = userService.getAllUsers(count, page);
+        return new ResponseEntity<>(allUsers, HttpStatus.OK);
 
     }
 }

@@ -7,9 +7,9 @@ package org.fisher.library.web.response;
 
 public final class ErrorConstants {
 
-    public static final String ERR_ACCESS_DENIED = "error.accessDenied";
-    public static final String ERR_VALIDATION = "error.validation";
-    public static final String ERR_METHOD_NOT_SUPPORTED = "error.methodNotSupported";
+    public static final String ERR_ACCESS_DENIED = "loginError.accessDenied";
+    public static final String ERR_VALIDATION = "loginError.validation";
+    public static final String ERR_METHOD_NOT_SUPPORTED = "loginError.methodNotSupported";
 
     private ErrorConstants() {
     }

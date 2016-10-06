@@ -3,6 +3,7 @@ package org.fisher.library.security;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.fisher.library.domain.entity.Authority;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -19,6 +20,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 /**
  * @author fisher
@@ -105,7 +109,9 @@ public class StatelessAuthenticationSecurityConfig extends WebSecurityConfigurer
                 // allow anonymous GETs for email confirmation
                 .antMatchers(HttpMethod.GET,
                         "/api/user/current",
-                        "/api/book/getBest/*"
+                        "/api/book/getBest/*",
+                        "/api/book/getAll/*/*",
+                        "/api/book/getAllCount"
                 ).permitAll()
 
                 // allow anonymous POSTs to username and sign up
@@ -171,5 +177,19 @@ public class StatelessAuthenticationSecurityConfig extends WebSecurityConfigurer
         // verification of all authenticated requests are stateless, that is it does not require access to any internal
         // or external state
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+    }
+
+    @Bean
+    public FilterRegistrationBean corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.addAllowedOrigin("*");
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("*");
+        source.registerCorsConfiguration("/**", config);
+        FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
+        bean.setOrder(0);
+        return bean;
     }
 }

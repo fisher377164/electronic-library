@@ -8,6 +8,7 @@
     <artifactId>library</artifactId>
     <version>1.0</version>
     <name>Electronic Library</name>
+    <packaging>war</packaging>
 
     <parent>
         <artifactId>spring-boot-starter-parent</artifactId>

@@ -23,6 +23,8 @@ import java.util.List;
 @Service
 public class BookServiceImpl implements BookService {
 
+    private static final String RATING_SELECTOR = "rating";
+
     private final BookRepository bookRepository;
 
     private final AuthorRepository authorRepository;
@@ -35,11 +37,25 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<BookInfoDTO> getTopBooks(Integer count) {
-        PageRequest request = new PageRequest(0, count, Sort.Direction.DESC, "rating");
+        PageRequest request = new PageRequest(0, count, Sort.Direction.DESC, RATING_SELECTOR);
         Page<Book> bestBooksPage = bookRepository.findAll(request);
         List<BookInfoDTO> books = new ArrayList<>();
         bestBooksPage.forEach(book -> books.add(new BookInfoDTO(book)));
         return books;
+    }
+
+    @Override
+    public List<BookInfoDTO> getAllBooksPage(Integer page, Integer count) {
+        PageRequest request = new PageRequest(page, count, Sort.Direction.DESC, RATING_SELECTOR);
+        Page<Book> bestBooksPage = bookRepository.findAll(request);
+        List<BookInfoDTO> books = new ArrayList<>();
+        bestBooksPage.forEach(book -> books.add(new BookInfoDTO(book)));
+        return books;
+    }
+
+    @Override
+    public long getAllBooksCount() {
+        return bookRepository.count();
     }
 
     @Override
