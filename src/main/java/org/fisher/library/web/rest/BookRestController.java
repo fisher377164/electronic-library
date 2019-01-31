@@ -23,7 +23,7 @@ import java.util.List;
 @RequestMapping("/api/book")
 public class BookRestController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserRestController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(BookRestController.class);
 
     private final BookService bookService;
 
